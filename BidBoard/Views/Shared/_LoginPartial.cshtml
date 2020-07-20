@@ -1,0 +1,103 @@
+﻿@* ReSharper disable Html.PathError *@
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="dropdown">
+        <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup-true aria-expanded="false">
+            <img src="/api/Ad/GetUserImage" width="32" class="rounded-circle" alt="@(User?.Identity?.Name??string.Empty)">
+        </a>
+        <div class="dropdown-menu dropdown-menu-animated" aria-labelledby="preview">
+            <span class="account-title drop-down-item-text">My Account</span>
+            <div class="user-picture">
+                <div style="display:inline-block;">
+                    <img style="border-radius:48px;display: inline-block;" width="48" height="48" src="/api/Ad/GetUserImage"/>
+                </div>
+                <div style="display:inline-block;">
+                    <span class="dropdown-item-text account-name">@(User?.Claims?.FirstOrDefault(m => m.Type == "name")?.Value ?? string.Empty)</span>
+                    <span class="dropdown-item-text account-email">@(User?.Identity?.Name ?? string.Empty)</span>
+                </div>
+            </div>
+            <div class="dropdown-divider" style="margin-top:20px;margin-left:15px;"></div>
+            <div class="user-info">
+                <a class="dropdown-item">
+                    <i class="fa fa-user"></i>
+                    Edit profile
+                </a>
+                <a class="dropdown-item">
+                    <i class="fa fa-cog"></i>
+                    Edit account settings
+                </a>
+                <a class="dropdown-item">
+                    <i class="fa fa-plus-circle"></i>
+                    Add Team Member
+                </a>
+                <div class="dropdown-divider" style="margin-top:20px;margin-left:15px;"></div>
+                <a class="dropdown-item">
+                    <i class="far fa-question-circle"></i>
+                    Support
+                </a>
+                <a class="dropdown-item" asp-area="AzureAD" asp-controller="Account" asp-action="SignOut">
+                    <i class="fas fa-power-off"></i>
+                    Sign out
+                </a>
+                <a class="dropdown-item" href="https://portal.office.com/account">My Account</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <a class="navbar-text" asp-area="AzureAD" asp-controller="Account" asp-action="SignIn">Sign in</a>
+}
+
+
+<style>
+    .account-name {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: normal;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .account-email {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .user-info {
+        display: inline-block;
+    }
+
+    .user-picture {
+        display: inline-block;
+        margin-left: 8px;
+        vertical-align: top;
+    }
+
+    div.dropdown-menu {
+        color: rgb(37, 36, 35);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        width: 280px;
+    }
+
+    .account-title {
+        font-size: 18px;
+        font-weight: 600;
+        height: 27px;
+        line-height: 27px;
+        padding-bottom: 18px;
+        padding-top: 0px;
+        padding-left: 8px;
+        margin-bottom: 20px;
+        vertical-align: middle;
+        display: block;
+    }
+
+    div.dropdown-menu > img {
+        margin-left: 8px;
+        display: inline;
+    }
+</style>

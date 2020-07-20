@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - Aurigo Bid Board</title>
+    
+    <link href="~/css/vendors.bundle.css" rel="stylesheet" />
+    <link href="~/css/app.bundle.css" rel="stylesheet" />
+    <link href="~/css/themes/cust-theme-7.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-LRlmVvLKVApDVGuspQFnRQJjkv0P7/YFrw84YYQtmYG4nK8c+M+NlmYDCv0rKWpG" crossorigin="anonymous">
+</head>
+
+<body>
+    <partial name="_ScriptsLoadingSaving"/>
+    <div class="page-wrapper">
+        <div class="page-inner">
+            <partial name="_Navigation" />
+            <div id="page-content-wrapper" class="page-content-wrapper">
+                <partial name="_PageHeader"></partial>
+                <div id="page-content" role="main" class="page-content">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <partial name="_ColorProfileReference"/>
+    </div>
+
+    <script src="~/js/vendors.bundle.js"></script>
+    <script src="~/js/app.bundle.js"></script>
+    <script src="https://kevincox-cdn.appspot.com/url-1.0.4.min.js"></script>
+
+    await @RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

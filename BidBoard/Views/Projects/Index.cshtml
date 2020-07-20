@@ -1,0 +1,35 @@
+﻿@model object
+
+@{
+    ViewBag.Title = "My Projects";
+    Layout = "_Layout";
+}
+<div class="col-12">
+    <div class="border-faded bg-faded p-3 mb-g d-flex">
+        <input type="text"
+               id="filter-quotes"
+               name="filter-quotes"
+               class="form-control shadow-inset-2"
+               placeholder="Enter filter criteria"
+               data-bind="value:filterText">
+        <div class="btn-group btn-group-toggle ml-3" data-toggle="buttons">
+            <label class="btn btn-default" title="Active and Inactive">
+                <input type="radio"
+                       name="active-view"
+                       value="true"
+                       data-type="boolean"
+                       data-bind="checked: showInactive, events: {change: activeFilterChanged}" />
+                <i class="fa fa-stop-circle"></i>
+            </label>
+            <label class="btn btn-default" title="Active only">
+                <input type="radio"
+                       name="active-view"
+                       value="false"
+                       data-type="boolean"
+                       data-bind="checked: showInactive, events: {change: activeFilterChanged} /">
+                <i class="far fa-circle"></i>
+            </label>
+        </div>
+    </div>
+</div>
+

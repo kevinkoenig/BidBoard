@@ -1,0 +1,193 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+
+input[type="submit"] {
+    border-style: none;
+}
+
+.k-loading-image {
+    background-image: url('') !important;
+}
+
+.form-control, 
+.row,
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,
+.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2,
+.col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
+.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4,
+.col-xs-5, .col-sm-5, .col-md-5, .col-lg-5,
+.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6,
+.col-xs-7, .col-sm-7, .col-md-7, .col-lg-7,
+.col-xs-8, .col-sm-8, .col-md-8, .col-lg-8,
+.col-xs-9, .col-sm-9, .col-md-9, .col-lg-9,
+.col-xs-10, .col-sm-10, .col-md-10, .col-lg-10,
+.col-xs-11, .col-sm-11, .col-md-11, .col-lg-11,
+.col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-control.k-widget {
+    padding: 0;
+    width: 100%;
+    height: auto;
+}
+
+.q2c-percent {
+    text-align: right;
+    padding-right:3px;
+    width: calc(100% - 30px);
+}
+
+    .form-control.k-widget:not(.k-autocomplete) {
+        border-width: 0;
+    }
+
+footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    min-height: 15px;
+    background-color: lightgray;
+}
+
+footer.container {
+    vertical-align: middle;
+    font-size: 10px;
+}
+
+
+a:visited {
+    color:black;
+}
+
+a {
+    color:black;
+}
+
+.dev-mode {
+    color:white;
+    padding: 5px 15px;
+    background-color: #0d6a92;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-right:30px;
+}
+
+.btn-toolbar {
+    padding-left: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 14px;
+    background-color: whitesmoke;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.btn-toolbar a {
+    display: block;
+}
+
+.btn-toolbar div {
+    text-align: center;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 40px;
+    padding-top: 1px;
+}
+
+.btn-toolbar div.q2c-button:hover {
+    background-color: darkgray;
+}
+
+a:visited {
+     color: black;
+ }
+a:link {
+    color: black;
+}
+
+.summary-bar {
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: -15px;
+    padding-left: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: lightblue;
+    overflow: hidden;
+}
+
+.popover {
+    max-width: 500px;
+}
+
+.button-group {
+    clear: both;
+}
+
+.dl-horizontal {
+}
+
+    .dl-horizontal dt {
+        margin: 0 0 4px 0;
+        float: left;
+        clear: left;
+        width: 110px;
+    }
+
+    .dl-horizontal dd {
+        margin: 0 0 4px 120px;
+        width: 300px;
+        float: left;
+    }
+        .dl-horizontal dd:after {
+            clear: both;
+            display: block;
+        }
+
+
+/* kendo style overrides */
+.k-grid, .k-panelbar, .k-tabstrip-wrapper {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+/* makes popups work in kendo grids*/
+td.cmd-cell, th.cmd-cell {
+    overflow: visible !important;
+}
+
+.not-active {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: black;
+}
+
+@media screen and (max-height: 480px) {
+    /* make the toolbar text smaller */
+    .btn-toolbar {
+        font-size: small;
+    }
+
+    /* Make the page header text smaller */
+    .page-header {
+        font-size: x-small;
+    }
+
+    /* Hide the footer*/
+    footer {
+        display: none;
+    }
+}
+
+/* Reference classes, no implementation */
+.js-waves-off, .js-waves-on, .js-get-date, .js-collapse, .js-modal-settings, .js-filter-message, .js-buttons, .js-icon-class, .js-icon-copy, .base, .needs-validation, .flex-start, .text-faded, .app-container-demo, .has-tooltip, .has-popover {
+}
+
+.js-bg-color, .js-bg-gradient, .js-bg-gradient-demo, .js-bg-target {
+}
+

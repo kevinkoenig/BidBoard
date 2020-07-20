@@ -1,0 +1,14 @@
+﻿@* ReSharper disable Html.PathError *@
+
+<div class="info-card">
+    <img src="/api/Ad/GetUserImage" class="profile-image rounded-circle" alt="@(User?.Identity?.Name??string.Empty)">
+    <div class="info-card-text">
+        <a href="#" class="d-flex align-items-center text-white">
+            <span class="text-truncate text-truncate-sm d-inline-block">
+                @ViewBag.User
+            </span>
+        </a>
+        <span class="d-inline-block text-truncate text-truncate-sm">@(User?.Identity?.Name??string.Empty)</span>
+    </div>
+    <img src="~/images/cover-4-lg.png" class="cover" alt="cover">
+</div>
