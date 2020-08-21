@@ -1,0 +1,96 @@
+﻿<div id="filter-buttons" class="filter-buttons-container">
+    <div class="filter-button-container ml-2" data-filter="Size">
+        <button class="filter-button" title="Filter by Project Size">
+            Size
+        </button>
+        <div class="qq-popover" style="width:400px;">
+            <span class="popover-arrow-up"></span>
+            <div class="qq-popover-content">
+                <div style="padding-left:10px;">
+                    <div style="display:flex; align-items: center; flex-wrap: nowrap">
+                        <input data-role="numerictextbox" data-format="C0" class="form-control form-control-sm" style="width:45%;" data-bind="value:minValue" type="number" placeholder="Min"/>
+                        <span style="margin-left: 10px;margin-right: 10px;">-</span>
+                        <input data-role="numerictextbox" data-format="C0" class="form-control form-control-sm" style="width:45%" data-bind="value:maxValue" type="number" placeholder="Max"/>
+                    </div>
+                    <div class="mt-5">
+                        <div id="size-range-slider" style="width:95%"
+                             data-bind="events: { change: onSliderChange, slide: onSliderSlide }"
+                             data-role="myrangeslider" 
+                             data-min="0" 
+                             data-max="90000000" 
+                             @* data-tooltip="{format: '{0:#,#.##}'" *@
+                             data-small-step="4000000" 
+                             data-large-step="8000000" 
+                             data-left-drag-handle-title="Min"
+                             data-right-drag-handle-title="Max"
+                             data-tick-placement="both">
+                            <input/>
+                            <input/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-button-container ml-2" data-filter="Rating">
+        <button class="filter-button" title="Filter by Project Rating">
+            Rating
+        </button>
+        <div class="qq-popover" style="width:200px;">
+            <span class="popover-arrow-up"></span>
+            <div class="qq-popover-content" style=" min-height: 80px;width: 200px;">
+                <div style="display:flex; margin-left: 12px; align-items: center;">
+                    Rating                
+                    <span class="d-inline-block" data-bind="html: getStarsHtml, events: {click: setStarFilterValue}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-button-container ml-2" data-filter="Type">
+        <button class="filter-button" title="Filter by Project Type">
+            Type
+        </button>
+        <div class="qq-popover">
+            <span class="popover-arrow-up"></span>
+            <div class="qq-popover-content">
+                <ul style="list-style-type: none" data-bind="source: projectTypes" data-template="project-type-filter"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="filter-button-container ml-2" data-filter="Liked">
+        <button class="filter-button" title="Filter by Project Type">
+            Liked
+        </button>
+        <div class="qq-popover">
+            <span class="popover-arrow-up"></span>
+            <div class="qq-popover-content">
+                <ul style="list-style-type: none">
+                    <li>
+                        <div class="button-container">
+                            <input type="radio" name="liked" value="true" data-bind="checked: liked, events: { change: processLikedFilterChange}" data-type="boolean" />
+                            <span class="button-text">Liked</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="button-container">
+                            <input type="radio" name="liked" value="false" data-bind="checked: liked, events: { change: processLikedFilterChange}" data-type="boolean" />
+                            <span class="button-text">Not Liked</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="filter-button-container ml-2" data-filter="Size">
+        <button class="filter-button" title="Clear All Filters" data-bind="click: clearAllFilters">Clear All</button>
+    </div>
+</div>        
+
+<script id="project-type-filter" type="text/html">
+    <li>
+        <div class="button-container">
+            <input name="project-type" type="checkbox" data-bind="value: value, checked: selectedProjectTypes, events:{ change: processProjectTypeFilterChange }" data-type="number" />
+            <span class="button-text" data-bind="text:text"></span>
+        </div>
+    </li>
+</script>

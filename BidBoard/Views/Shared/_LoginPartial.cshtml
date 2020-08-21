@@ -1,0 +1,98 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<BidBoardUser> UserManager
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var userImage = string.IsNullOrWhiteSpace(user?.UserImageUrl??string.Empty) ? "/api/Ad/GetUserImage" : user?.UserImageUrl ?? string.Empty;
+}
+
+@* ReSharper disable Html.PathError *@
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="dropdown">
+        <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup-true aria-expanded="false">
+            <img src="@userImage" width="32" class="rounded-circle" alt="@(User?.Identity?.Name ?? string.Empty)">
+        </a>
+        <div class="dropdown-menu dropdown-menu-animated" aria-labelledby="preview">
+            <span class="account-title drop-down-item-text">My Account</span>
+            <div class="user-picture">
+                <div style="display:inline-block;">
+                    <img style="border-radius:48px;display: inline-block;" width="48" height="48" src="@userImage" alt="User Photo"/>
+                </div>
+                <div style="display:inline-block;">
+                    <span class="dropdown-item-text account-name">@(User?.Claims?.FirstOrDefault(m => m.Type == "name")?.Value ?? string.Empty)</span>
+                    <span class="dropdown-item-text account-email">@(User?.Identity?.Name ?? string.Empty)</span>
+                </div>
+            </div>
+            <div class="dropdown-divider" style="margin-top:20px;margin-left:15px;"></div>
+            <div class="user-info">
+                <a class="dropdown-item" href="/Identity/Account/Manage">My Account</a>
+                <div class="dropdown-divider" style="margin-top:20px;margin-left:15px;"></div>
+                <a class="dropdown-item">
+                    <i class="far fa-question-circle"></i>
+                    Support
+                </a>
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnurl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="dropdown-item">Signout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+@*     <a class="navbar-text" asp-area="AzureAD" asp-controller="Account" asp-action="SignIn">Sign in</a> *@
+}
+
+
+<style>
+    .account-name {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: normal;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .account-email {
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .user-info {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .user-picture {
+        display: inline-block;
+        margin-left: 8px;
+        vertical-align: top;
+    }
+
+    div.dropdown-menu {
+        color: rgb(37, 36, 35);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        width: 280px;
+    }
+
+    .account-title {
+        font-size: 18px;
+        font-weight: 600;
+        height: 27px;
+        line-height: 27px;
+        padding-bottom: 18px;
+        padding-top: 0;
+        padding-left: 8px;
+        margin-bottom: 20px;
+        vertical-align: middle;
+        display: block;
+    }
+
+    div.dropdown-menu > img {
+        margin-left: 8px;
+        display: inline;
+    }
+</style>

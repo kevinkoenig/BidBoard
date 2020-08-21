@@ -1,0 +1,244 @@
+﻿{
+    "swagger": "2.0",
+    "info": {
+        "title": "bid",
+        "description": "API specification for the Azure Machine Learning service bid",
+        "version": "1.0"
+    },
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "For example: Bearer abc123"
+        }
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "operationId": "ServiceHealthCheck",
+                "description": "Simple health check endpoint to ensure the service is up at any given point.",
+                "responses": {
+                    "200": {
+                        "description": "If service is up and running, this response will be returned with the content 'Healthy'",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "application/json": "Healthy"
+                        }
+                    },
+                    "default": {
+                        "description": "The service failed to execute due to an error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/score": {
+            "post": {
+                "operationId": "RunMLService",
+                "description": "Run web service's model and get the prediction output",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "serviceInputPayload",
+                        "in": "body",
+                        "description": "The input payload for executing the real-time machine learning service.",
+                        "schema": {
+                            "$ref": "#/definitions/ServiceInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The service processed the input correctly and provided a result prediction, if applicable.",
+                        "schema": {
+                            "$ref": "#/definitions/ServiceOutput"
+                        }
+                    },
+                    "default": {
+                        "description": "The service failed to execute due to an error.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ServiceInput": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Content Type": {
+                                "type": "string"
+                            },
+                            "Opp Type": {
+                                "type": "string"
+                            },
+                            "Acronym": {
+                                "type": "object"
+                            },
+                            "Organization Level 1": {
+                                "type": "string"
+                            },
+                            "Organization Level 2": {
+                                "type": "string"
+                            },
+                            "Solicitation Year": {
+                                "type": "object"
+                            },
+                            "Market": {
+                                "type": "string"
+                            },
+                            "Contract Type": {
+                                "type": "object"
+                            },
+                            "Priority": {
+                                "type": "object"
+                            },
+                            "Contract Vehicle": {
+                                "type": "object"
+                            },
+                            "Type of Award": {
+                                "type": "object"
+                            },
+                            "NAICS": {
+                                "type": "object"
+                            },
+                            "NAICS Description": {
+                                "type": "object"
+                            },
+                            "Place of Perf - Country": {
+                                "type": "string"
+                            },
+                            "Place of Perf - State/Prov.": {
+                                "type": "string"
+                            },
+                            "Place of Perf - Location": {
+                                "type": "string"
+                            },
+                            "Place of Perf - Zip Code": {
+                                "type": "string"
+                            },
+                            "Project Funding Source": {
+                                "type": "object"
+                            },
+                            "Org Address": {
+                                "type": "object"
+                            },
+                            "Org City": {
+                                "type": "object"
+                            },
+                            "Org State": {
+                                "type": "object"
+                            },
+                            "Org Zip Code": {
+                                "type": "object"
+                            },
+                            "Organization Type": {
+                                "type": "string"
+                            },
+                            "Lead Source": {
+                                "type": "string"
+                            },
+                            "Status": {
+                                "type": "string"
+                            },
+                            "Solicitation Number": {
+                                "type": "string"
+                            },
+                            "Value ($K)": {
+                                "type": "object"
+                            },
+                            "Latest News": {
+                                "type": "object"
+                            },
+                            "Summary": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            },
+            "example": {
+                "data": [
+                    {
+                        "Content Type": "Opportunities",
+                        "Opp Type": "Lead Alerts",
+                        "Acronym": "nan",
+                        "Organization Level 1": "ILLINOIS",
+                        "Organization Level 2": "ILLINOIS STATE DEPARTMENTS",
+                        "Solicitation Year": "nan",
+                        "Market": "State, Local & Ed",
+                        "Contract Type": "nan",
+                        "Priority": "nan",
+                        "Contract Vehicle": "nan",
+                        "Type of Award": "nan",
+                        "NAICS": "nan",
+                        "NAICS Description": "nan",
+                        "Place of Perf - Country": "United States",
+                        "Place of Perf - State/Prov.": "Illinois",
+                        "Place of Perf - Location": "Downers Grove (IL), Dupage County (IL)",
+                        "Place of Perf - Zip Code": "60515",
+                        "Project Funding Source": "nan",
+                        "Org Address": "nan",
+                        "Org City": "nan",
+                        "Org State": "nan",
+                        "Org Zip Code": "nan",
+                        "Organization Type": "Transportation >> Highways, Transportation",
+                        "Lead Source": "Capital Improvement Plan",
+                        "Status": "Forecast Pre-RFP",
+                        "Solicitation Number": "TBD(4458-2)",
+                        "Value ($K)": "nan",
+                        "Latest News": "nan",
+                        "Summary": "ROUTE :294"
+                    }
+                ]
+            }
+        },
+        "ServiceOutput": {
+            "type": "array",
+            "items": {
+                "type": "integer",
+                "format": "int64"
+            },
+            "example": [
+                0
+            ]
+        },
+        "ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "status_code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

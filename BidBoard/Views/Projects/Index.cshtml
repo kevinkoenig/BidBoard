@@ -1,0 +1,202 @@
+﻿@{
+    ViewBag.PageName = "Projects";
+    ViewBag.Title = "My Projects";
+    Layout = "_Layout";
+}
+
+<!--suppress ALL -->
+<div id="projects-wrapper">
+    <div id="header-row" class="row">
+        <div class="col-12">
+            <div class="border-faded bg-faded p-3 mb-g d-flex">
+                <input type="text"
+                       id="filter-projects"
+                       name="filter-projects"
+                       class="form-control shadow-inset-2"
+                       placeholder="Enter filter criteria"
+                       data-bind="value:filterText">
+                <div class="btn-group ml-3">
+                    <div title="Export to excel" class="btn btn-default">
+                        <btn href="#">
+                            <i class="fa fa-file-excel"></i>
+                        </btn>
+                    </div>
+                    <div title="Advanced Search" class="btn btn-default">
+                        <btn href="#" data-toggle="modal" data-target=".advanced-search">
+                            <i class="fal fa-search-plus"></i>
+                        </btn>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"
+         id="projects"
+         data-template="projects-template"
+         data-bind="source: projects"
+         style="overflow-y:auto">
+    </div>
+</div>
+
+<div class="advanced-search modal fade modal-backdrop-transparent" style="top:65px;" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-right modal-md">
+        <div class="modal-content">
+            <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+                <h4 class="m-0 text-center color-white">
+                    Advanced Search
+                </h4>
+                <button type="button" 
+                        class="close text-white position-absolute pos-top pos-right p-3 m-1 mr-2" 
+                        data-dismiss="modal" 
+                        aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="settings-panel">
+                    <div class="list mt-4">
+                        <div class="mt-auto">
+                            <input class="dont-resize float-right" type="checkbox" data-role="switch" />
+                            <span class="onoffswitch-title">Like Others</span>
+                            <span class="onoffswitch-title-desc">find bids like what i have bid on previously</span>
+                        </div>
+                        <div class="mt-2">
+                            <select class="form-control form-control-sm float-right w-50">
+                                <option>Less than 1M</option>
+                                <option>Between 1M and 1.5M</option>
+                                <option>Between 1.5M and 3M</option>
+                                <option>Between 3M and 5M</option>
+                                <option>Greater than 5M</option>
+                            </select>
+                            <span class="onoffswitch-title">By Size</span>
+                            <span class="onoffswitch-title-desc">Search solications by size of award</span>
+                        </div>
+                        <div class="mt-2">
+                            <select class="form-control form-control-sm float-right w-50">
+                                <option>Within 7 days</option>
+                                <option>Within 30 days</option>
+                                <option>Within 60 days</option>
+                            </select>
+                            <span class="onoffswitch-title">Soliciations Within</span>
+                            <span class="onoffswitch-title-desc">Find soliciations that are ending soon</span>
+                        </div>
+                        <div class="mt-2">
+                            <div class="float-right w-50">
+                                <select data-role="multiselect"
+                                        data-placeholder="type a project type">
+                                    <option>Bridge</option>
+                                    <option>Resurface</option>
+                                    <option>Culvert</option>
+                                    <option>Drainage</option>
+                                    <option>Lighting</option>
+                                    <option>Waste water</option>
+                                    <option>Pottable water</option>
+                                </select>
+                            </div>
+                            <span class="onoffswitch-title">Project Type</span>
+                            <span class="onoffswitch-title-desc">Find solications by project type</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-default ml-5 mt-5">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<script id="projects-template" type="text/html">
+    <div class="col-lg-6 col-md-12">
+        <div class="card border shadow-0 mb-1 shadow-sm-hover"
+             data-filter-tags="#:programName.toLowerCase()# #:summary.toLowerCase()#"
+             data-bind="events: {click: onClick, dblclick: onDblClick}">
+            <div class="card-header">
+                <div class="w-100">
+                    <a class="text-truncate d-inline-block title-name"
+                       style="max-width: 100%; font-size: 1.2rem;"
+                       title="#=programName#"
+                       data-bind="text:programName"></a>
+                </div>
+                <div class="w-100 d-flex" style="align-items: center;">
+                    Solicitation Number:
+                    <div class="ml-2 d-inline-block"
+                         data-bind="text: solicitationNumber"></div>
+                </div>
+                <div class="w-100">
+                    <div class="rfx-date">
+                        Soliciation Date:
+                        <div class="d-inline-block ml-2"
+                             data-bind="text:solicitationDate"
+                             data-format="d"></div>
+                    </div>
+                    <div class="response-date">
+                        Response Due:
+                        <div class="d-inline-block ml-2"
+                             data-bind="text: responseDate"
+                             data-format="d"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div>
+                    <span>User Rating:</span>
+                    <span data-bind="events: { click: onStarClick}">
+                        # for (var i = 0; i < stars; i++) { #
+                        <i name="star" class="fas fa-star"></i>
+                        #}#
+                        # for (var i = stars; i < 5; i++) { #
+                        <i name="star" class="far fa-star"></i>
+                        #}#
+                    </span>
+                </div>
+                <div class="mt-2 d-flex align-items-center">
+                    <span title="how relevant is this opportunity to me">System Score: </span>
+                    <div class="ai-bar" style="background-color: \#8383b7; width: #=systemScore * 80#%">
+                        AI Powered
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <span title="Who am I working with">Subs: </span>
+                    <div style="margin-left: 4px; display:inline-block;">Fred's Contracting, Inter Area Concrete, Jane's Electric</div>
+                </div>
+             </div>
+        </div>
+    </div>
+</script>
+
+<style>
+    .ai-bar {
+        padding-left: 4px; 
+        padding-right: 4px; 
+        color: white; 
+        overflow: hidden; 
+        text-align: center; 
+        border-radius: 4px; 
+        margin-left:4px; 
+        display: inline-block; 
+        height: 20px;        
+    }
+    [name="star"]:hover {
+        color:blue;
+    }
+    
+    #projects {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    
+    .rfx-date {
+        float: left;
+        display: flex;
+        align-items: center;
+    }
+    .response-date {
+        float: right;
+        display: flex;
+        align-items: center;
+    }
+</style>
+
+@section Scripts
+{
+    <script src="~/js/Projects/Index.js"></script>
+}

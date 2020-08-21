@@ -1,0 +1,39 @@
+﻿@using BidBoard.ViewModels
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>title</h2>
+
+<button class="btn btn-outline-dark" data-id="10">Attachments</button>
+@await Html.PartialAsync("AttachmentControl", new AttachmentViewModel
+{
+    Name = "kevin",
+    ParentId = 0,
+    ParentModule = "Test"
+})
+
+
+@section Scripts {
+    <render-stored-content asp-key="" />
+
+    <script>
+        $(document).ready(function () {
+            // handle the attachment button for the work packages
+            $('.btn').click(function () {
+                var id = $(this).attr('data-id');
+                var title = "this is a stupid test";
+                if (id) {
+                    attachmentControl.open('Attachments for Package: ' + title, id);
+                }
+            });
+
+            // initialize the attachment control
+            var attachmentControl = new AttachmentControl("kevin");
+            attachmentControl.setParentModule("testupload");
+        });
+    </script>
+
+    <script src="~/js/Attachments.js"></script>
+}

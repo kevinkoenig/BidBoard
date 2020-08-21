@@ -1,0 +1,78 @@
+﻿<div id="projects-header" class="d-flex justify-content-end pb-2 pt-2" style="font-size: 1.3rem;width: 100%;">
+    <div>
+        <span class="mr-1" data-bind="text: nVisible"></span>
+        of
+        <span class="ml-1 mr-1" data-bind="text: nFiltered"></span>
+        Filtered
+    </div>
+</div>
+<div id="projects-scroll" style="overflow-y:scroll;" class="row" data-bind="source: projects" data-template="projects-template">
+</div>
+<div id="pager" style="width:100%"></div>
+
+<partial name="_ProjectDetailsWindow"/>
+
+@* project list template *@
+<script id="projects-template" type="text/html">
+    <div class="col-md-12">
+        <div class="card border shadow-0 mb-1 shadow-sm-hover"
+             data-filter-tags="#:programName.toLowerCase()# #:summary.toLowerCase()#"
+             data-bind="events: {click: onClick, dblclick: onDblClick}">
+            <div class="card-header">
+                <div class="w-100 d-flex" style="align-items:center;">
+                    <button data-bind="click:, click:processProjectSaveClick" 
+                            style="border:none; display: inline-block; margin-right: 4px; background-color: transparent;">
+                        <i class="fa-heart" data-bind="css: { far:isProjectNotLiked, fas: liked}"></i>
+                    </button>
+                    <a class="text-truncate d-inline-block title-name"
+                       style="max-width: 90%; font-size: 1.2rem;"
+                       title="#=programName#"
+                       data-bind="text:programName"></a>
+                </div>
+                <div class="w-100 d-flex" style="align-items: center;">
+                    Solicitation Number:
+                    <div class="ml-2 d-inline-block"
+                         data-bind="text: solicitationNumber"></div>
+                </div>
+                <div class="w-100 d-flex" style="align-items: center">
+                    Project Value:
+                    <div class="ml-2 d-inline-block" data-bind="text: value" data-format="C0"></div>
+                    
+                </div>
+                <div class="w-100">
+                    <div class="rfx-date">
+                        Soliciation Date:
+                        <div class="d-inline-block ml-2"
+                             data-bind="text:solicitationDate"
+                             data-format="d"></div>
+                    </div>
+                    <div class="response-date">
+                        Response Due:
+                        <div class="d-inline-block ml-2"
+                             data-bind="text: responseDate"
+                             data-format="d"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div>
+                    <span>Rating:</span>
+                    <span data-bind="html: getStarsHtml, events: {click: onStarClick}"></span>
+                </div>
+                <div class="mt-2 d-flex align-items-center">
+                    <span title="how relevant is this opportunity to me">Score: </span>
+                    <div class="ai-bar" data-bind="style: { width: getAiBarWidth }">
+                        Relevence (AI Powered)
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <span title="Who am I working with">Subs: </span>
+                    <div style="margin-left: 4px; display:inline-block;">Fred's Contracting, Inter Area Concrete, Jane's Electric</div>
+                </div>
+             </div>
+        </div>
+    </div>
+</script>
+
+
+ 

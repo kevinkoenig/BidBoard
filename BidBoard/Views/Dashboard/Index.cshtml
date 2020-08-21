@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Insights";
+    Layout = "_Layout";
+    ViewData["PageName"] = "Dashboard";
+}
+
+<div id="tile-layout"></div>
+
+<script id="conversion-rate" type="text/x-kendo-template">
+    <h3>9</h3>
+    <div>Opportunities Won</div>
+</script>
+<script id="current" type="text/x-kendo-template">
+    <h3 id="current-count"></h3>
+    <div>Active opportunities right now</div>
+</script>
+<script id="bounce-rate" type="text/x-kendo-template">
+    <h1>55 %</h1>
+    <div>The average savings in time comapred to other search tools</div>
+</script>
+<script id="my-saved-opportunities-template" type="text/x-kendo-template">
+    <div id="my-saved-opportunities" style="height:100%; width:100%"></div>
+</script>
+<script id="opportunities-by-type-template" type="text/x-kendo-template">
+    <div id="opportunities-by-type-chart" style="height:100%; width:100%"></div>
+</script>
+<script id="upcoming-template" type="text/x-kendo-template">
+    <div id="upcoming-chart" style="height:100%; width:100%"></div>
+</script>
+
+<partial name="_ProjectDetailsWindow" />
+
+<style>
+    h3 {
+        font-size:30px;
+        font-weight: bold;
+    }
+</style>
+@section Scripts
+{
+    <script src="~/js/ProjectDetailWindow.js"></script>
+    <script src="~/js/Dashboard/index.js"></script>
+}

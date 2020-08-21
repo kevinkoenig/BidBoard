@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BidBoard", "BidBoard\BidBoard.csproj", "{E068B5A1-8374-45A9-B224-96266BE481FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BidBoard.Model", "BidBoard.Model\BidBoard.Model.csproj", "{DEEB8783-F1CC-48B1-86DA-95233F586254}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadData", "LoadData\LoadData.csproj", "{791603B6-B245-4A1F-B1B3-00CF7FDBF0C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E068B5A1-8374-45A9-B224-96266BE481FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E068B5A1-8374-45A9-B224-96266BE481FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E068B5A1-8374-45A9-B224-96266BE481FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E068B5A1-8374-45A9-B224-96266BE481FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEEB8783-F1CC-48B1-86DA-95233F586254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEEB8783-F1CC-48B1-86DA-95233F586254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEEB8783-F1CC-48B1-86DA-95233F586254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEEB8783-F1CC-48B1-86DA-95233F586254}.Release|Any CPU.Build.0 = Release|Any CPU
+		{791603B6-B245-4A1F-B1B3-00CF7FDBF0C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{791603B6-B245-4A1F-B1B3-00CF7FDBF0C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{791603B6-B245-4A1F-B1B3-00CF7FDBF0C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{791603B6-B245-4A1F-B1B3-00CF7FDBF0C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,72 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+
+    var userImageUrl = string.IsNullOrWhiteSpace(Model.UserImageUrl) ? "/images/NoAccountPicture.jpg" : Model.UserImageUrl;
+}
+
+<h4>@ViewData["Title"]</h4>
+<input type="hidden" asp-for="UserImageUrl" />
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <input type="hidden" asp-for="Input.UserImageData" />
+            
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" disabled/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control"/>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div style="display:flex; align-items: center;">
+                <div id="current-image">
+                    <img src="@userImageUrl" alt="user image" width="80" id="orig-image"/>
+                    <a id="change-image" href="#">Change Image</a>
+                </div>
+                <div id="file-upload" style="display:none;margin-left: 10px;">
+                    <div style="display:flex;align-items: end;">
+                        <div id="upload-demo" style="width: 200px;height: 200px"></div>
+                        <div style="display:flex; flex-direction: column; margin-left: 4px; color: white;">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <div class="btn btn-primary" style="position:relative;">
+                                        <span id="upload-label">Upload</span>
+                                        <input type="file" id="upload"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <a id="save-image" class="btn btn-primary mt-1 disabled">Save</a>
+                            <a id="cancel-upload" class="btn btn-primary mt-1">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="update-profile-button" type="submit" class="btn btn-primary mt-5">Save</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .custom-file input[type="file"] {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        opacity: 0;
+        margin: 0;
+    }
+</style>
+
+@section Scripts {
+    <script src="/js/Identity/Manage/Index.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

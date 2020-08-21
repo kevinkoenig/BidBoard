@@ -1,0 +1,98 @@
+﻿<div id="project-details-window-wrapper">
+    <div style="display:none;"
+         id="project-detail-window"
+         data-title="false"
+         data-role="window"
+         data-bind="dialogOpen: detailWindowVisible, events: { close: closeDetailWindow }"
+         data-modal="true"
+         data-width="600px"
+         data-scrollable="false"
+         data-height="99%"
+         data-resizable="false">
+        <button data-bind="click: closeDetailWindow" style="position:fixed; top: 8px; right: -40px; color: black; background: transparent;border: none;">
+            <svg width="24px" height="24px" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.778 11.778L4 4l7.778 7.778L4 19.556l7.778-7.778zm0 0l7.778 7.778-7.778-7.778L19.556 4l-7.778 7.778z" stroke="#FFF" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </button>
+        <div class="project-title">
+            <div>
+                <img class="title-logo" src="images/aurigo.png" alt="aurigo logo"/>
+            </div>
+            <div class="project-title-buttons-container">
+                <button data-bind="click:, click:processSaveClick"><i class="fa-heart" data-bind="css: { far:isNotLiked, fas: selectedProject.liked}"></i><span>Save</span></button>
+                <button><i class="fal fa-share"></i><span>Share</span></button>
+                <button><i class="fal fa-ellipsis-h"></i><span>More</span></button>
+            </div>
+        </div>
+        <div style="font-size:1.4rem;font-weight: bold;" data-bind="text:selectedProject.value" data-format="C0"></div>
+        <div style="display:flex;align-items: center; justify-content: space-between; font-size: 16px; margin-top:8px">
+            <div style="display:flex;align-items: center">
+                <span style="width:140px;font-weight: bold;">Solicitation Date:</span>
+                <div style="margin-left:4px;" data-bind="text: selectedProject.solicitationDate" data-format="d"></div>
+            </div>
+            <div style="display:flex;align-items: center">
+                <span style="width:140px;font-weight: bold;">Solicitation Due:</span>
+                <div style="margin-left:4px;" data-bind="text:selectedProject.responseDate" data-format="d"></div>
+            </div>
+        </div>
+        <div style="display:flex; align-items: center; justify-content:space-between; font-size: 16px; margin-top: 8px;">
+            <div><span style="width:140px;font-weight: bold;">Time on BidBoard:</span> 23 days</div>
+            <div><strong>Views:</strong> 47</div>
+            <div><strong>Saves:</strong> 11</div>
+        </div>
+        <div style="margin-top:10px; margin-bottom: 10px;font-size: 16px;" data-bind="text: getProjectAddress"></div>
+        
+        <div style="overflow-y: auto;height: calc(100% - 165px)">
+            <div class="section-title">Program Description</div>
+            <div style="white-space: pre-line; margin-top: 4px;" data-bind="text:selectedProject.programName"></div>
+            
+            <div class="section-title">Summary</div>
+            <div style="white-space: pre-line;margin-top: 4px;" data-bind="text:selectedProject.summary"></div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .section-title {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: #3e3e3E;
+        border-bottom: 1px solid #7e7e7e;
+        font-size:18px;
+        font-weight: bold;    
+    }
+    .project-title {
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.2rem; 
+        margin-bottom: 4px;    
+        border-bottom: 1px solid #aeaeae;
+        padding-bottom: 10px;
+    }
+    .title-logo {
+        height: auto;
+        width: 120px;
+    }
+    
+    .project-title-buttons-container {
+        display: flex;
+        align-content: center;    
+    }
+    
+    .project-title-buttons-container > button {
+        margin-right: 10px;
+        background: transparent;
+        border: none;
+    }
+    
+    .project-title-buttons-container span:hover {
+        color: #aeaeae;
+    }
+    
+    .project-title-buttons-container > button > i {
+        margin-right:3px;
+    }
+    
+</style>

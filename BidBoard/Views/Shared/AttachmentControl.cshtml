@@ -1,0 +1,76 @@
+﻿@model BidBoard.ViewModels.AttachmentViewModel
+
+<script id="@(Model.Name + "_attachmentHtml")" type="text/html">
+    <div id="@(Model?.Name ?? string.Empty)_AttachmentWindow" style="display:none">
+        <form id="#:name#_fileForm">
+            <div id="#:name#_fileDiv">
+                <input style="display:none;" type="file" name="files" id="@((Model?.Name??string.Empty) + "_fileInput")" />
+            </div>
+        </form>
+    </div>
+ </script>
+
+<script id="@((Model?.Name??string.Empty) + "_fileTemplate")" type="text/x-kendo-template">
+    <span class='k-progress'></span>
+    <div class='file-wrapper'>
+        <a class='file-heading file-name-heading'>#=name#</a>
+        <div class='file-heading file-size-heading'>Size: #=size# bytes</div>
+        <button type='button' class='k-upload-action'></button>
+    </div>
+</script>
+
+
+<style scoped>
+    .k-filename {
+        max-width: 800px;
+    }
+
+    .k-file-success .k-progress {
+        background-color: #fff;
+    }
+
+    .k-file-success {
+        color: #000000;
+    }
+
+    .file-heading {
+        font-family: Arial;
+        font-size: 1.1em;
+        display: inline-block;
+        width: 450px;
+        margin: 0 0 0 20px;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .file-wrapper a {
+        cursor: pointer;
+    }
+
+    .file-name-heading {
+        font-weight: normal;
+    }
+
+
+    .file-size-heading {
+        font-weight: normal;
+        font-style: italic;
+        margin-top: 0px;
+        padding-top: 0px;
+        width: 160px;
+    }
+
+    li.k-file .file-wrapper .k-upload-action {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    li.k-file div.file-wrapper {
+        position: relative;
+        height: 35px;
+    }
+</style>

@@ -1,0 +1,25 @@
+{
+	"version": 4,
+  "lists": [
+    {
+      "title": "Insights",
+      "icon": "fas fa-chart-line fa-fw",
+      "href": "/Dashboard"
+    },
+    {
+      "title": "Map View",
+      "icon": "fas fa-map fa-fw",
+      "href": "/Map"
+    },
+    {
+      "title": "Administration",
+      "role": "Administrator"
+    },
+    {
+      "title": "Administration",
+      "icon": "fa fa-cog fa-fw",
+      "items": [
+      ]
+    }
+  ]
+}

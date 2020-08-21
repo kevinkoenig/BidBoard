@@ -1,0 +1,61 @@
+﻿@{
+    var menu = NavigationModel.Full;
+}
+<ul id="js-nav-menu" class="nav-menu">
+    @foreach (var menuItem in menu.Lists.Where(menuItem => !(!AuthorizationHelper?.IsPermissioned(User, menuItem.Role) ?? false)))
+    {
+        if (menuItem.Items.Any())
+        {
+            var subMenus = menuItem.Items.Select(x => NavigationModel.GetPageName(x.Href)).ToList();
+
+            <li class="@(subMenus.Contains(ViewBag.PageName) ? "active open" : "")">
+                <a href="#" title="@(menuItem?.Title??string.Empty)">
+                    <i class="@(menuItem?.Icon??string.Empty)"></i>
+                    <span class="nav-link-text">@(menuItem?.Text??string.Empty)</span>
+                </a>
+                <ul>
+                    
+                    @foreach (var item in menuItem?.Items?? new List<ListItem>())
+                    {
+                        if (!AuthorizationHelper?.IsPermissioned(User, item.Role) ?? false)
+                        {
+                            continue;
+                        }
+                        var items = item.Items?.Select(x => NavigationModel.GetPageName(x.Href)).ToList();
+
+                        if (items?.Any() == true)
+                        {
+                            @:<li class="@(items.Contains(ViewBag.PageName) ? "active open" : "")">
+                        }
+                        else
+                        {
+                            @:<li class="@(ViewBag.PageName == NavigationModel.GetPageName(item.Href) ? "active" : "")">
+                        }
+
+                        <a href="@(item?.Route??string.Empty)" title="@(item?.Title??string.Empty)">
+                            <span class="nav-link-text">@(item?.Text??string.Empty)</span>
+                        </a>
+                        @:</li>
+                    }
+        
+                </ul>
+            </li>
+        }
+        else
+        {
+            if (string.IsNullOrWhiteSpace(menuItem.Href))
+            {
+                <li class="nav-title">@(menuItem?.Title??string.Empty)</li>
+            }
+            else
+            {
+                <li class="@(ViewBag.PageName == System.IO.Path.GetFileNameWithoutExtension(menuItem.Href) ? "active" : "")">
+                    <a href="@(menuItem?.Route??string.Empty)" title="@(menuItem?.Title??string.Empty)">
+                        <i class="@(menuItem?.Icon??string.Empty)"></i>
+                        <span class="nav-link-text">@(menuItem?.Text??string.Empty)</span>
+                    </a>
+                </li>
+            }
+        }
+    }
+</ul>

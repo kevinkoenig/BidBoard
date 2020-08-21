@@ -1,0 +1,33 @@
+﻿@model object
+
+@{
+    ViewBag.Title = "Find My Projects";
+    ViewData["PageName"] = "Map";
+    Layout = "_Layout";
+}
+
+<link href="css/map.css" rel="stylesheet" />
+
+<div class="border-faded bg-faded" style="display:flex;width: 100%;padding-top:  5px; padding-bottom: 5px;padding-left: 4px;">
+    <input id="map-search" class="form-control form-control shadow-inset-2 w-25" type="text" placeholder="Enter Search Area" />
+    <partial name="_FilterButtons"/>
+</div>
+
+<div id="map-container" class="row w-100">
+    <div class="col-8">
+        <div id="map"></div>
+    </div>
+    <div class="col-4" id="project-list">
+        <partial name="_Projects"/>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/ProjectDetailWindow.js"></script>
+    <script src="~/js/Map/rangeslider.js"></script>
+    <script src="~/js/Map/index.js"></script>
+    <script src="~/js/Map/projects.js"></script>
+    <script src="~/js/Map/filters.js"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkGqnIPZvQ2277eO9yLlehgDRK15Ebtn4&callback=initMap&libraries=places&v=weekly"></script>
+}
